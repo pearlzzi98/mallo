@@ -1,31 +1,58 @@
 ﻿# Mallo
 
-Google Calendar-connected voice scheduling assistant scaffold.
+Mallo는 Google Calendar와 연동되는 음성 기반 일정 비서 앱입니다.
 
-## Structure
+사용자가 음성이나 텍스트로 일정을 말하면,
+앱이 일정 초안을 만들고 기존 일정과 충돌을 확인한 뒤,
+필요하면 대체 가능한 시간대를 추천하는 흐름을 목표로 합니다.
 
-- `apps/mobile`: Expo React Native app with Google sign-in entry points and microphone capture flow
-- `apps/server`: Express API for Google OAuth exchange, calendar review, and event creation
-- `packages/domain`: shared scheduling models and suggestion logic
-- `deploy/mallo`: Docker Compose and reverse proxy examples for `mallo` on `pearlhub.cloud`
+## 프로젝트 구조
 
-## Mallo domain plan
+- `apps/mobile`
+  - Expo 기반 React Native 모바일 앱
+  - Google 로그인 진입, 음성 녹음, 일정 검토 화면 포함
+- `apps/server`
+  - Express 기반 API 서버
+  - Google OAuth, 일정 검토, 일정 생성 API 포함
+- `packages/domain`
+  - 일정 모델, 충돌 검사, 대체 시간 추천 등 공통 도메인 로직
+- `deploy/mallo`
+  - mallo 서버 배포용 Docker Compose 및 리버스 프록시 예시
 
-- Production API: `api.mallo.pearlhub.cloud`
-- Development API: `dev-api.mallo.pearlhub.cloud`
-- Mobile app and future web app should call one of those API domains depending on environment
+## 현재 구현된 흐름
 
-## Current flow
+1. 모바일 앱에서 Google Calendar 연결 시도
+2. 사용자가 음성 또는 텍스트로 일정 요청 입력
+3. 서버가 일정 초안을 생성
+4. 기존 일정과 충돌 여부 확인
+5. 충돌 시 대체 시간 후보 추천
+6. 확인 후 일정 생성
 
-1. The app asks the server for a Google OAuth URL
-2. The mobile app completes Google sign-in and exchanges the auth code for a session id
-3. The user can type or record a scheduling request
-4. The mobile app sends text to the draft review API
-5. The server checks Google Calendar when configured, otherwise falls back to mock mode
-6. The server returns conflicts and alternative suggestions
-7. The app creates the event in Google Calendar or mock mode
+Google 환경변수가 없는 경우에는 실제 Google Calendar 대신 mock 모드로 동작합니다.
 
-## Commands
+## 현재 구현된 기능
+
+- 모바일 앱 기본 화면 구성
+- Google OAuth URL 생성 및 코드 교환 API
+- 일정 초안 검토 API
+- 일정 생성 API
+- 음성 녹음 후 전사 요청 흐름
+- 일정 충돌 검사 로직
+- 대체 시간 추천 로직
+- Google Calendar provider와 mock provider 분리
+
+## 아직 미완료인 항목
+
+- 실제 STT provider 연동
+- 한국어 자연어 일정 파싱 고도화
+- Google 토큰 영속 저장
+- 추천 시간 선택 후 draft 반영 UX 개선
+- 실제 기기/로컬 환경 실행 검증
+- API base URL 환경별 분리
+
+## 실행 방법
+
+루트에서 아래 명령을 사용합니다.
 
 ```bash
 npm install
@@ -33,16 +60,16 @@ npm run dev:server
 npm run dev:mobile
 ```
 
-## Environment
+## 환경변수
 
-Create these files from the examples and set the correct values:
+아래 예시 파일을 복사해서 사용할 수 있습니다.
 
 ```bash
 apps/server/.env.dev
 apps/server/.env.prod
 ```
 
-Example variables:
+예시 값:
 
 ```bash
 GOOGLE_CLIENT_ID=...
@@ -50,42 +77,18 @@ GOOGLE_CLIENT_SECRET=...
 PORT=4000
 ```
 
-If Google env vars are missing, the app still works in mock mode for the scheduling flow.
+## 배포 관련 파일
 
-## Docker deployment for mallo
+현재 저장소에는 mallo 서버 기준 배포 스캐폴드도 포함되어 있습니다.
 
-Development container:
+- `apps/server/Dockerfile`
+- `deploy/mallo/docker-compose.dev.yml`
+- `deploy/mallo/docker-compose.prod.yml`
+- `deploy/mallo/Caddyfile`
 
-```bash
-docker compose -f deploy/mallo/docker-compose.dev.yml up -d --build
-```
+## 다음 개발 우선순위 제안
 
-Production container:
-
-```bash
-docker compose -f deploy/mallo/docker-compose.prod.yml up -d --build
-```
-
-Reverse proxy example is in `deploy/mallo/Caddyfile`.
-
-- `api.mallo.pearlhub.cloud` -> `127.0.0.1:4000`
-- `dev-api.mallo.pearlhub.cloud` -> `127.0.0.1:4100`
-
-## Implemented now
-
-- Shared event and suggestion domain models
-- Conflict-aware suggestion engine
-- Server routes for Google OAuth URL creation and auth code exchange
-- Server routes for draft review, mock speech transcription, and event creation
-- Google Calendar provider using the Google Calendar API client
-- Mock provider fallback when Google is not configured
-- Expo app flow for Google connect, voice recording, transcription request, and draft review
-- Dockerfile and dev/prod compose setup for the mallo server
-
-## Still remaining
-
-- Persist Google sessions securely instead of keeping them in memory
-- Replace the mock speech provider with a real STT provider
-- Improve natural language parsing beyond the demo parser
-- Add real device-safe API base URL handling instead of hardcoded localhost
-- Run install, typecheck, Docker build, and server verification
+1. 한국어 일정 파싱 개선
+2. 추천 시간 선택 기능 추가
+3. 실제 STT provider 연결
+4. Google Calendar 실제 연동 검증
