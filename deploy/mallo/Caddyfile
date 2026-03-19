@@ -1,0 +1,7 @@
+﻿api.mallo.pearlhub.cloud {
+  reverse_proxy 127.0.0.1:4000
+}
+
+dev-api.mallo.pearlhub.cloud {
+  reverse_proxy 127.0.0.1:4100
+}

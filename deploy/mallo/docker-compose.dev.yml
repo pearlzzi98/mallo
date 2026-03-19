@@ -1,0 +1,11 @@
+﻿services:
+  mallo-server-dev:
+    build:
+      context: ../..
+      dockerfile: apps/server/Dockerfile
+    container_name: mallo-server-dev
+    restart: unless-stopped
+    env_file:
+      - ../../apps/server/.env.dev
+    ports:
+      - "4100:4000"

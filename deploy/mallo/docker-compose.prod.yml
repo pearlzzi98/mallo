@@ -1,0 +1,11 @@
+﻿services:
+  mallo-server-prod:
+    build:
+      context: ../..
+      dockerfile: apps/server/Dockerfile
+    container_name: mallo-server-prod
+    restart: unless-stopped
+    env_file:
+      - ../../apps/server/.env.prod
+    ports:
+      - "4000:4000"
