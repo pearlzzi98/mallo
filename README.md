@@ -1,6 +1,7 @@
-﻿# Mallo
+# Mallo
 
 Mallo는 Google Calendar와 연동되는 음성 기반 일정 비서 앱입니다.
+이 프로젝트는 Codex로 기능 구현과 코드 정리를 진행하고, Claude CLI로 실제 서버 환경에서 동작 확인과 배포 점검을 수행합니다.
 
 사용자가 음성이나 텍스트로 일정을 말하면,
 앱이 일정 초안을 만들고 기존 일정과 충돌을 확인한 뒤,
@@ -85,6 +86,8 @@ PORT=4000
 - `deploy/mallo/docker-compose.dev.yml`
 - `deploy/mallo/docker-compose.prod.yml`
 - `deploy/mallo/Caddyfile`
+
+서버에서 Codex와 Claude를 분리해서 운영하는 방식과 비밀값 권한 정책은 [`docs/SERVER_AGENT_WORKFLOW.md`](./docs/SERVER_AGENT_WORKFLOW.md) 문서를 기준으로 관리합니다.
 
 ## 다음 개발 우선순위 제안
 
