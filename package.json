@@ -1,0 +1,14 @@
+{
+  "name": "mallo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:mobile": "npm --workspace @mallo/mobile run start",
+    "dev:server": "npm --workspace @mallo/server run dev",
+    "typecheck": "npm --workspaces run typecheck"
+  }
+}

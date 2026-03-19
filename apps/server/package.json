@@ -1,0 +1,23 @@
+{
+  "name": "@mallo/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "@mallo/domain": "0.1.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "googleapis": "^144.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}

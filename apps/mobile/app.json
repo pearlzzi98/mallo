@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "Mallo",
+    "slug": "mallo",
+    "scheme": "mallo",
+    "plugins": [
+      "expo-router",
+      [
+        "expo-av",
+        {
+          "microphonePermission": "Allow Mallo to access your microphone for voice scheduling."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
