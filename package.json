@@ -9,6 +9,12 @@
   "scripts": {
     "dev:mobile": "npm --workspace @mallo/mobile run start",
     "dev:server": "npm --workspace @mallo/server run dev",
-    "typecheck": "npm --workspaces run typecheck"
+    "typecheck": "npm --workspaces run typecheck",
+    "test": "vitest run tests/domain/draft-scheduling.test.ts tests/server/calendar-provider-selection.test.ts --pool threads",
+    "test:domain": "vitest run tests/domain/draft-scheduling.test.ts --pool threads",
+    "test:server": "vitest run tests/server/calendar-provider-selection.test.ts --pool threads"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
   }
 }
