@@ -87,7 +87,15 @@ PORT=4000
 - `deploy/mallo/docker-compose.prod.yml`
 - `deploy/mallo/Caddyfile`
 
-서버에서 Codex와 Claude를 분리해서 운영하는 방식과 비밀값 권한 정책은 [`docs/SERVER_AGENT_WORKFLOW.md`](./docs/SERVER_AGENT_WORKFLOW.md) 문서를 기준으로 관리합니다.
+서버에서 Codex와 Claude를 분리해서 운영하는 방식과 비밀값 권한 정책은 [`docs/guides/SERVER_AGENT_WORKFLOW.md`](./docs/guides/SERVER_AGENT_WORKFLOW.md) 문서를 기준으로 관리합니다.
+
+## 문서 구조
+
+프로젝트 문서는 역할에 따라 아래와 같이 관리합니다.
+
+- docs/checklists: 테스트, 배포, 점검 체크리스트
+- docs/guides: 공개 운영/개발 가이드
+- docs/internal: 내부 전용 문서
 
 ## 다음 개발 우선순위 제안
 

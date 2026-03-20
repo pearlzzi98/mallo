@@ -4,4 +4,4 @@ dist
 .env
 .DS_Store
 
-docs/SERVER_AGENT_WORKFLOW.private.md
+docs/internal/SERVER_AGENT_WORKFLOW.private.md
