@@ -1,7 +1,7 @@
-import type { CalendarProvider } from "./calendar-provider";
-import { createOAuthClient, getStoredSession, isGoogleConfigured, type GoogleOAuthConfig } from "./google-auth";
-import { GoogleCalendarProvider } from "./google-calendar-provider";
-import { MockCalendarProvider } from "./mock-calendar-provider";
+import type { CalendarProvider } from "./calendar-provider.js";
+import { createOAuthClient, getStoredSession, isGoogleConfigured, type GoogleOAuthConfig } from "./google-auth.js";
+import { GoogleCalendarProvider } from "./google-calendar-provider.js";
+import { MockCalendarProvider } from "./mock-calendar-provider.js";
 
 export function createCalendarProvider(input: {
   config: GoogleOAuthConfig;

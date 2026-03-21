@@ -1,4 +1,4 @@
-import { SpeechToTextProvider } from "./speech-provider";
+import type { SpeechToTextProvider } from "./speech-provider.js";
 
 export class MockSpeechToTextProvider implements SpeechToTextProvider {
   async transcribe(_: { audioBase64: string; mimeType: string }) {

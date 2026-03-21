@@ -1,7 +1,7 @@
 import { google } from "googleapis";
 import type { CalendarEvent, EventDraft } from "@mallo/domain";
 import type { OAuth2Client } from "google-auth-library";
-import { CalendarProvider } from "./calendar-provider";
+import type { CalendarProvider } from "./calendar-provider.js";
 
 function toCalendarEvent(item: {
   id?: string | null;

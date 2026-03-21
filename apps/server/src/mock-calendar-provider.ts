@@ -1,5 +1,5 @@
 import type { CalendarEvent, EventDraft } from "@mallo/domain";
-import { CalendarProvider } from "./calendar-provider";
+import type { CalendarProvider } from "./calendar-provider.js";
 
 const mockEvents: CalendarEvent[] = [
   {

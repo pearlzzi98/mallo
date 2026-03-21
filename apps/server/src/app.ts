@@ -7,9 +7,9 @@ import {
   type AvailabilityPreference,
   type EventDraft
 } from "@mallo/domain";
-import { buildGoogleAuthUrl, exchangeGoogleCode, isGoogleConfigured, type GoogleOAuthConfig } from "./google-auth";
-import { createCalendarProvider } from "./provider-factory";
-import { MockSpeechToTextProvider } from "./mock-speech-provider";
+import { buildGoogleAuthUrl, exchangeGoogleCode, isGoogleConfigured, type GoogleOAuthConfig } from "./google-auth.js";
+import { createCalendarProvider } from "./provider-factory.js";
+import { MockSpeechToTextProvider } from "./mock-speech-provider.js";
 
 export function createApp() {
   const app = express();

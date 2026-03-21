@@ -1,4 +1,4 @@
-import {
+import type {
   AvailabilityPreference,
   CalendarEvent,
   ConflictResult,
@@ -6,7 +6,7 @@ import {
   EventDraft,
   SchedulingIntent,
   SlotSuggestion
-} from "./models";
+} from "./models.js";
 
 const MINUTES_PER_HOUR = 60;
 const SEARCH_DAYS = 7;
