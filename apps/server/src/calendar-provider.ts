@@ -1,4 +1,4 @@
-import { CalendarEvent, EventDraft } from "@mallo/domain";
+import type { CalendarEvent, EventDraft } from "@mallo/domain";
 
 export interface CalendarProvider {
   listEvents(input: { calendarId: string; from: string; to: string }): Promise<CalendarEvent[]>;
